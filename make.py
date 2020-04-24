@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import re
@@ -50,7 +50,7 @@ def build():
       layer["Datasource"]["file"] = config["ne_places"]
     else:
       # Assume all other layers are PostGIS layers
-      for opt, val in config["postgis"].iteritems():
+      for opt, val in config["postgis"].items():
         if (val == ""):
           if (opt in layer["Datasource"]):
             del layer["Datasource"][opt]
@@ -67,7 +67,7 @@ def install():
   assert isdir(config["path"]), "Config.path does not point to your mapbox projects directory; please fix and re-run"
   sanitized_name = re.sub("[^\w]", "", config["name"])
   output_dir = join(config["path"], sanitized_name)
-  print "installing to %s" % output_dir
+  print("installing to %s" % output_dir)
   copy_tree("build", output_dir)
 
 def pull():
@@ -102,7 +102,7 @@ def pull():
       layer["Datasource"]["file"] = defaultconfig["ne_places"]
     else:
       # Assume all other layers are PostGIS layers
-      for opt, val in defaultconfig["postgis"].iteritems():
+      for opt, val in defaultconfig["postgis"].items():
         if val and opt in layer["Datasource"]:
           layer["Datasource"][opt] = val
         elif opt in layer["Datasource"]:

@@ -18,12 +18,13 @@ def copy_tree(src, dst, ignores=()):
     did not have a way to ignore the files I wanted to ignore.
     """
     if not os.path.isdir(src):
-        raise DistutilsFileError, "cannot copy tree '%s': not a directory" % src
+        raise DistutilsFileError("cannot copy tree '%s': not a directory" % src)
 
     try:
         names = os.listdir(src)
-    except os.error, (errno, errstr):
-        raise DistutilsFileError, "error listing files in '%s': %s" % (src, errstr)
+    except os.error as e:
+        (errno, errstr) = e
+        raise DistutilsFileError("error listing files in '%s': %s" % (src, errstr))
 
     mkpath(dst)
 

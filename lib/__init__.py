@@ -58,7 +58,7 @@ def install():
   assert isdir(config["path"]), "Config.path does not point to your mapbox projects directory; please fix and re-run"
   sanitized_name = re.sub("[^\w]", "", config["name"])
   output_dir = join(config["path"], sanitized_name)
-  print "installing to %s" % output_dir
+  print("installing to %s" % output_dir)
   copy_tree("build", output_dir)
 
 def pull():
